@@ -2,6 +2,7 @@ from os import listdir
 import numpy as np
 import pandas as pd
 
+# data from multiple data sources are downloaded from PubChem and placed in data directory in seperate folders
 data_dir = 'data/'
 folder_names = sorted(listdir(data_dir))
 summs = [data_dir+f+'/summary.txt' for f in folder_names]
@@ -37,10 +38,13 @@ for file_counter in range(len(summs)):
         for line in current_lines:
             if line == current_lines[0]:
                 continue
+            # extract data source
             if line.startswith('Source'):
                 source = line.split(':')[1].lstrip()
+            # extract bioassay AID
             elif line.startswith('AID'):
                 aid = line.split(':')[1].lstrip()
+            # extract number of molecules and active molecules
             elif line.startswith('Substance BioActivity'):
                 dummy = line.split(':')[1].lstrip()
                 dummy_num = dummy.split()
@@ -49,15 +53,16 @@ for file_counter in range(len(summs)):
                         active_num = int(dummy_num[num_counter-1])
                     if 'Tested' in dummy_num[num_counter]:
                         sub_num = int(dummy_num[num_counter-1])
+            # extract target
             elif line.startswith('Protein Targets') or line.startswith('Protein Target'):
                 target = line.split(':')[1].lstrip()
             else:
                 print('UNUSED DATA:', line)
         data.append([aid, name, source, block_number, target, sub_num, active_num])
 
+# Parse descriptions
 data_desc = []
 for file_counter in range(len(descs)):
-    # file_counter = 7
     desc = descs[file_counter]
     with open(desc) as file:
         lines = []
@@ -68,7 +73,6 @@ for file_counter in range(len(descs)):
         if lines[i] == '':
             block_idx.append(i)
     for block_counter in range(len(block_idx)):
-        # block_counter = 128
         if block_counter != len(block_idx) - 1:
             current_lines = lines[block_idx[block_counter] + 1:block_idx[block_counter + 1]]
         else:
@@ -91,6 +95,7 @@ for file_counter in range(len(descs)):
             elif line.startswith('AID:') and '_||_' not in line:
                 aid = line.split(':')[1].lstrip()
             else:
+                # Rules for parsing descriptions from different data sources
                 dummy_lines = line.split('_||_')
                 if folder_names[file_counter] == 'Broad_Ins':
                     description = line.replace('_||_', ' ')
@@ -218,5 +223,6 @@ merged = df.merge(df_desc, how='outer')
 print(len(df), len(df_desc), len(merged))
 print(len(df_desc.dropna()))
 
+# Save bioassays' information and descriptions
 merged.to_csv('merged.csv', header=True, index=False)
 
