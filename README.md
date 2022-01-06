@@ -28,7 +28,7 @@ The training.py script offers simple training on the molecular data for all benc
 1- Select the data type (disease or target) within the code.\
 2 - Specify the featurizer (GraphConv or ECFP). GraphConv triggers training of a Graph Convolutional Neural Network, while ECFP trains a simple fully connected neural network.\
 3 - Specify the training data directory (default is at data/ where you unzip the main dataset).\
-4 - Start the training. \
+4 - Start the training.
 
 Training happens on a transformed training set to overcome imbalance, where positive data point have higher weights than the negative data points for the loss function. However, evaluation is done on untransformed validation and test sets, to not allow the transformed weights to affect the metric calculation outcomes and to allow missing values to not be counted toward the metric calculations.
 
