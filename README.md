@@ -12,7 +12,8 @@ tensorflow==2.5.0
 Requirements for clustering the bioassay text descriptions:\
 biobert-embedding==0.1.1\
 transformers\
-kneed
+kneed\
+python-docx
 
 # How to Use
 After cloning the repo, this repository can be used to perform training on the MolData dataset, or to create a molecular dataset from bioassays and their descriptions. To get bechmark result and to train model on the molecular data:\
