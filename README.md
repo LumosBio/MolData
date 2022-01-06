@@ -4,19 +4,23 @@ A Molecular Benchmark for Disease and Target Based Machine Learning
 Deep learning’s automatic feature extraction has been a revolutionary addition to computational drug discovery, infusing both the capabilities of learning abstract features and discovering complex molecular patterns via learning from molecular data. Since biological and chemical knowledge is are necessary for overcoming the challenges of data curation, balancing, training, and evaluation, it is important for databases to contain meaningful information regarding the exact target and disease of each bioassay. The existing depositories such as PubChem or ChEMBL offer the screening data of for millions of molecules against a variety of cells and targets, however, their bioassays contain complex biological information descriptions which can hinder their usage by the machine learning community. In this work, a comprehensive disease and target-based dataset is collected from PubChem in order to facilitate and accelerate molecular machine learning for better drug discovery. MolData is one the largest efforts to date for democratizing the molecular machine learning, with roughly 170 million drug screening results from 1.4 million unique molecules assigned to specific diseases and targets. It also provides 30 unique categories of targets and diseases. Correlation analysis of the MolData bioassays unveil valuable information for drug repurposing for multiple diseases including cancer, metabolic disorders, and infectious diseases. Finally, we provide a benchmark of more than 30 models trained on each category using multitask learning. MolData aims to pave the way for computational drug discovery and accelerate the advancement of molecular artificial intelligence in a practical manner.
 
 # Requirements
-Requirements for training the models and running the benchmark:
-deepchem==2.5.0
-rdkit==2020.09.1
-tensorflow==2.5.0
-
+Requirements for training the models and running the benchmark:\
+deepchem==2.5.0\
+rdkit==2020.09.1\
+tensorflow==2.5.0\
 Requirements for clustering the bioassay text descriptions:
+
 biobert-embedding==0.1.1
+
 transformers
+
 kneed
 
 # How to Use
 After cloning the repo, this repository can be used to perform training on the MolData dataset, or to create a molecular dataset from bioassays and their descriptions. To get bechmark result and to train model on the molecular data:
+
 1- Unzip the data within the data directory.
+
 2- Run training.py for training and evaluating a Graph Convolutional Neural Network, or a traditional ECFP-based fully connected network.
 
 If you plan to work with bioassays descriptions, move forward to "Preprocessing Bioassay Descriptions" section. In short you would need to preprocess the description, download molecular data, and clean and partition the molecular data.
