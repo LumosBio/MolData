@@ -21,7 +21,8 @@ After cloning the repo, this repository can be used to perform training on the M
 If you plan to work with bioassays descriptions, move forward to "Preprocessing Bioassay Descriptions" section. In short you would need to preprocess the description, download molecular data, and clean and partition the molecular data.
 
 # Data
-The MolData dataset is can be accessed from the data directory after unzipping. all_molecular_data includes 1.4 million molecules, 600 columns of binary bioactivity labels, and the splits (training, validation, or test) the molecules belong to. aid_disease_mapping contains the mapping between bioassays and their related category of diseases, and aid_target_mapping contains the same for category of targets. To have accurate and comparable results, please use the provided split labels for training and evaluations.\
+The MolData dataset is can be accessed from the data directory after unzipping. all_molecular_data includes 1.4 million molecules, 600 columns of binary bioactivity labels, and the splits (training, validation, or test) the molecules belong to. aid_disease_mapping contains the mapping between bioassays and their related category of diseases, and aid_target_mapping contains the same for category of targets. To have accurate and comparable results, please use the provided split labels for training and evaluations.
+
 The data sources used for the creation of the MolData dataset gathered from the PubChem database are referenced within "data/data_reference_list.txt"
 
 # Training on the Molecular Data
